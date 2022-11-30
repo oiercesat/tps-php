@@ -1,8 +1,51 @@
 <html>
-<form action="exercice2.php" method="POST">
+<form action="exercice2.php" method="GET">
     <input type="text" name="text" id="text" placeholder="Entrez un pays">
     <input type="submit">
 </form>
 <br>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+
+    let xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4) //si la requête à abouti et est terminée
+        {
+            if (this.status == 200) // si le code de retour est 200, le serveur à répondu et envoyé une réponse
+            {
+                //Le traitement à effectuer avec la réponse : affichage via alert, passage à une fonction, mise un jour du DOM (réponse dans xhr.responseText et dans xhr.responseXML).
+                
+            }
+            else {
+                //traitement dans le cas d'un retour en erreur code != 200 : affichage par alert, console, mise à jour du DOM. 
+                alert("Le serveur n'a pas répondu à la requête : code d'erreur : " + this.status);
+            }
+        }
+    }
+
+    let input = document.getElementById("text");
+    input.addEventListener("input", function (e) {
+        xhr.open("GET","http://localhost/R3.01%20dev%20web/tpPhp/tps-php/Tp6/exercice1.php?",true);
+    })
+
+    function getXMLHttpRequest() {
+        var xhr = null;
+        if (window.XMLHttpRequest || window.ActiveXObject) {
+            if (window.ActiveXObject) {
+                try {
+                    xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            } else {
+                xhr = new XMLHttpRequest();
+            }
+        } else {
+            alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+            return null;
+        }
+        return xhr;
+    }
+</script>
+
 </html>
