@@ -15,18 +15,29 @@
     $html.="<form>";
     
     for ($i=0; $i < $nombreCases; $i++) { 
-        $html.="<input type='text' placeholder='".$nomFormulaire[$i]."'>";
+        $html.="<input type='text' id=\"".$nomFormulaire[$i]."\" placeholder=\"".$nomFormulaire[$i]."\"/input>";
     }
     
     
     $html.="</html>";
     $html.="</body>";
     $html.="</form>";
+
+    $php="<?php";
+
+    
+    $php.="?>";
     
     
     $fichierHTML=fopen($nomFichier,"w");
     fputs($fichierHTML,$html);
     fclose($fichierHTML);
 
-    print("<html><a href='".$nomFichier."' /a></html>")
+    $a="<html>";
+    $a.="<a href=\">";
+    $a.=$nomFichier;
+    $a.="\"/a></html>";
+
+    print($a);
+    print($nomFichier);
 ?>
